@@ -6,13 +6,13 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:16:02 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/28 17:13:08 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:54:15 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-Form::AForm() : _name("Default"), _isSigned(false), _gradeToSign(150), _gradeToExec(150)
+AForm::AForm() : _name("Default"), _isSigned(false), _gradeToSign(150), _gradeToExec(150)
 {
 	std::cout << "AForm default constructor called!" << std::endl;
 }
@@ -74,6 +74,14 @@ void AForm::beSigned(Bureaucrat& b)
 		_isSigned = true;
 }
 
+void AForm::canExecute(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > _gradeToExec)
+		throw AForm::GradeTooLowException();
+	if (_isSigned == false)
+		throw AForm::FormNotSignedException();
+}
+
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high!";
@@ -82,6 +90,11 @@ const char* AForm::GradeTooHighException::what() const throw()
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return "Grade is too low!";
+};
+
+const char *AForm::FormNotSignedException::what(void) const throw()
+{
+	return "Form needs to be signed before executing!";
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& f)

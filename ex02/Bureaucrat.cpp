@@ -6,11 +6,17 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:15:50 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/28 16:35:59 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:56:58 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+
+#define BOLD_RED         "\033[1m\033[31m"
+#define BOLD_CYAN    "\033[1m\033[36m"
+#define BOLD_MAGENTA     "\033[1m\033[35m"
+#define RED         "\033[31m"
+#define RESET   "\033[0m"
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 {
@@ -70,25 +76,40 @@ void Bureaucrat::decrementGrade()
 	this->_grade++;
 }
 
-void Bureaucrat::signForm(Form& form)
+void Bureaucrat::signForm(AForm& form)
 {
 	if (form.getIsSigned() == true)
 	{
-		std::cout << "Form " << form.getName() << " already signed!" << std::endl;
+		std::cout << BOLD_CYAN << "Form " << form.getName() << " already signed!" << RESET << std::endl;
 		return ;
 	}
 	try
 	{
 		form.beSigned(*this);
 	}
-	catch (Form::GradeTooLowException &e)
+	catch (AForm::GradeTooLowException &e)
 	{
-		std::cout << _name << " couldn’t sign " << form.getName();
-        std::cout << " because their grade (" << _grade;
-        std::cout << ") is too low. Required grade: " << form.getGradeToSign() << "." << std::endl;
+		std::cout << BOLD_RED << _name << " couldn’t sign " << form.getName() << RESET;
+        std::cout << RED << " because their grade (" << _grade;
+        std::cout << ") is too low. Required grade: " << form.getGradeToSign() << "." << RESET << std::endl;
 		return ;
 	}
-	std::cout << _name << " sign " << form.getName() << "!" << std::endl;
+	std::cout << BOLD_CYAN << _name << " sign " << form.getName() << "!" << RESET << std::endl;
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << BOLD_RED << "Bureaucrat " << _name << " couldn’t execute " << form.getName() << ": " << RESET;
+		std::cerr << RED << e.what() << RESET << std::endl;
+		return ;
+	}
+	std::cout << BOLD_MAGENTA << _name << " executed " << form.getName() << "!" << RESET << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

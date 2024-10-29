@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 17:25:22 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/29 15:16:27 by nsouza-o         ###   ########.fr       */
+/*   Created: 2024/10/29 16:45:50 by nsouza-o          #+#    #+#             */
+/*   Updated: 2024/10/29 17:04:19 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include "AForm.hpp"
 
-class ShrubberyCreationForm : public AForm {
+class RobotomyRequestForm : public AForm {
 private:
 	std::string _target;
 
 public:
-	ShrubberyCreationForm();
-	ShrubberyCreationForm(std::string target);
-	ShrubberyCreationForm(const ShrubberyCreationForm& src);
-	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& src);
-	~ShrubberyCreationForm();
+	RobotomyRequestForm();
+	RobotomyRequestForm(std::string target);
+	RobotomyRequestForm(const RobotomyRequestForm& src);
+	RobotomyRequestForm& operator=(const RobotomyRequestForm& src);
+	~RobotomyRequestForm();
 
 	void execute(Bureaucrat const & executor) const;
 };
 
-#endif // SHRUBBERYCREATIONFORM_HPP
+#endif // ROBOTOMYREQUESTFORM_HPP
