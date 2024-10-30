@@ -6,7 +6,7 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:47:01 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/29 19:31:35 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:32:44 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {	
 	AForm::canExecute(executor);
 
-	std::cout << BOLD_GREEN << executor.getName() << " has been pardoned by Zaphod Beeblebrox!" << RESET << std::endl;
+	std::cout << BOLD_GREEN << _target << " has been pardoned by Zaphod Beeblebrox!" << RESET << std::endl;
 }

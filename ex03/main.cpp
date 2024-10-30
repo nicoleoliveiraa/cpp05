@@ -6,7 +6,7 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:18:26 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/30 11:10:19 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:08:20 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,53 @@
 int main()
 {
 	Intern dum;
-	AForm* form = NULL; 
-	Bureaucrat bu("Max Weber", 15);
-
-	try
-	{
-		form = &dum.makeForm("RobotomyRequestForm", "CEO");
-		form->beSigned(bu);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-
-	delete form;
 	
-/* 	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << BOLD_YELLOW << "-------> Non-existent Form Test <-------" << RESET << std::endl;
+	std::cout << std::endl;
+
+	{
+		Bureaucrat bu("Max Weber", 15);
+		AForm* form = NULL; 
+	
+		try
+		{
+			form = &dum.makeForm("nonexistent", "Mr. X");
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << BOLD_RED << e.what() << RESET << std::endl;
+		}
+		if (form)
+		{
+			bu.signForm(*form);
+			bu.executeForm(*form);
+		}
+	
+		delete form;
+	}
+	
+	std::cout << std::endl;
 	std::cout << BOLD_YELLOW << "-------> ShrubberyCreationForm Test <-------" << RESET << std::endl;
 	std::cout << std::endl;
 
 	{
-		ShrubberyCreationForm sForm;
 		Bureaucrat bOne("Max Weber", 15);
+		AForm* sForm = NULL; 
+
+		try
+		{
+			sForm = &dum.makeForm("ShrubberyCreationForm", "Mr. X");
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << BOLD_RED << e.what() << RESET << std::endl;
+		}
 		
-		bOne.signForm(sForm);
-		bOne.executeForm(sForm);
+		bOne.signForm(*sForm);
+		bOne.executeForm(*sForm);
+
+		delete sForm;
 
 	}
 	
@@ -60,11 +82,22 @@ int main()
 	std::cout << std::endl;
 
 	{
-		RobotomyRequestForm rForm;
 		Bureaucrat bTwo("Max Weber", 30);
+		AForm* rForm = NULL; 
+
+		try
+		{
+			rForm = &dum.makeForm("RobotomyRequestForm", "Mr. X");
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << BOLD_RED << e.what() << RESET << std::endl;
+		}
 	
-		bTwo.signForm(rForm);
-		bTwo.executeForm(rForm);
+		bTwo.signForm(*rForm);
+		bTwo.executeForm(*rForm);
+	
+		delete rForm;
 	
 	}
 
@@ -73,13 +106,23 @@ int main()
 	std::cout << std::endl;
 
 	{
-		PresidentialPardonForm pForm;
 		Bureaucrat bThree("Max Weber", 1);
-	
-		bThree.signForm(pForm);
-		bThree.executeForm(pForm);
-	
-	} */
-	
+		AForm* pForm = NULL; 
 
+		try
+		{
+			pForm = &dum.makeForm("PresidentialPardonForm", "Mr. X");
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << BOLD_RED << e.what() << RESET << std::endl;
+		}
+	
+		bThree.signForm(*pForm);
+		bThree.executeForm(*pForm);
+	
+		delete pForm;
+	
+	}
+	
 }

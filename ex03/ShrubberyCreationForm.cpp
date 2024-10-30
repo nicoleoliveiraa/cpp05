@@ -6,7 +6,7 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:27:39 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/29 19:20:14 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:35:48 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	AForm::canExecute(executor);
 
 	std::ofstream outFile;
-	std::string fileName = executor.getName() + "_shrubbery";
+	std::string fileName = _target + "_shrubbery";
 	
 	outFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
 	if (!outFile.good())

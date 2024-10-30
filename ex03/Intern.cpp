@@ -6,11 +6,13 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:10:52 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/30 11:10:36 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:19:42 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+#define RESET   "\033[0m"
+#define BOLD_YELLOW  "\033[1m\033[33m"
 
 Intern::Intern()
 {
@@ -59,7 +61,10 @@ AForm& Intern::makeForm(std::string name, std::string target)
 	for (int i = 0; i < 3; ++i)
 	{
 		if (!name.compare(forms[i]))
+		{
+			std::cout << BOLD_YELLOW << "Intern creates " << name << "!" << RESET << std::endl;
 			return *(this->*formCreators[i])(target);
+		}
 	}
 	
 	throw FormDoesNotExistException();
@@ -67,5 +72,5 @@ AForm& Intern::makeForm(std::string name, std::string target)
 
 const char *Intern::FormDoesNotExistException::what(void) const throw()
 {
-	return "Coudn't create a form: Nonexistent form type!";
+	return "Coudn't create a form: Non-existent form type!";
 };

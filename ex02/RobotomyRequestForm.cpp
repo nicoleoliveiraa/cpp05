@@ -6,7 +6,7 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:47:01 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/29 19:30:19 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:01:43 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	std::cout << "*Tap, tap, tap...*\n*Chhhhhh...*\n*Whirr, whirr, whirr...*" << RESET << std::endl;
 	
 	if (isFailed % 2)
-		std::cout << BOLD_BLUE << "Bureaucrat " << executor.getName() << " was robotomized!" << RESET << std::endl;
+		std::cout << BOLD_BLUE << _target << " was robotomized!" << RESET << std::endl;
 	else
-		std::cout << BOLD_BLUE << "The robotomy of the Bureaucrat " << executor.getName() << " failed!" << RESET << std::endl;
+		std::cout << BOLD_BLUE << "The robotomy of " << _target << " failed!" << RESET << std::endl;
 }
