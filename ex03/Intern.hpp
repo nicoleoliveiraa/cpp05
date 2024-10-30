@@ -6,7 +6,7 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:09:42 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/29 20:38:56 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:59:48 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ public:
 	Intern& operator=(const Intern& src);
 	~Intern();
 
-	AForm& makePresidentialPardonForm(const std::string target);
-	AForm& makeRobotomyRequestForm(std::string target);
-	AForm& makeShubberyCreationForm(std::string target);
+	AForm* makePresidentialPardonForm(const std::string target);
+	AForm* makeRobotomyRequestForm(std::string target);
+	AForm* makeShubberyCreationForm(std::string target);
 	
 	AForm& makeForm(std::string name, std::string target);
 

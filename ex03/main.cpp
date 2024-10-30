@@ -6,7 +6,7 @@
 /*   By: nsouza-o <nsouza-o@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:18:26 by nsouza-o          #+#    #+#             */
-/*   Updated: 2024/10/29 20:41:25 by nsouza-o         ###   ########.fr       */
+/*   Updated: 2024/10/30 11:10:19 by nsouza-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 #define RESET   "\033[0m"
 #define RED         "\033[31m"
@@ -25,6 +26,22 @@
 
 int main()
 {
+	Intern dum;
+	AForm* form = NULL; 
+	Bureaucrat bu("Max Weber", 15);
+
+	try
+	{
+		form = &dum.makeForm("RobotomyRequestForm", "CEO");
+		form->beSigned(bu);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	delete form;
+	
 /* 	std::cout << std::endl;
 	std::cout << BOLD_YELLOW << "-------> ShrubberyCreationForm Test <-------" << RESET << std::endl;
 	std::cout << std::endl;
